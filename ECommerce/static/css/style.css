@@ -99,7 +99,7 @@ body{
 
 #slogan{
   
-  background-image: url("/static/images/lahh.png");
+  background: url('{{ STATIC_URL }}ECommerce/static/images/lahh.png');
   
   height: 100vh;
   width: 100%;
