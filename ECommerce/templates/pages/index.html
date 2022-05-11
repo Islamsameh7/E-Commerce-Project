@@ -1,12 +1,227 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Ecomerce Tutorial </title>
+
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+
+  <link rel ="stylesheet" href="{% static 'css/style.css' %}">
+
 </head>
+
 <body>
+
+  <section id = "header">
+    <a href = "#" ><img src = "{% static 'images/logo.png' %}" class ="logo" alt=""></a> 
+    <div >
+      <ul id="navbar">
+        <li> <a class="active" href = "index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="Blog.html">Blog</a></li>
+        <li><a href="About.html">About</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="cart.html"><i class="far fa-shopping-bag"></i></a></li>
+      </ul>
+    </div>
+  </section>
+
+<section id="slogan">
+  <h2>Super value deals </h2>
+    <h1>On all products</h1>
+    <p>Save more with coupons & up to 70% off! </p>
+    <button>Shop Now</button>
+</section>
+
+<section id="feature" class="section-p1">
+<div class = "box" >
+  <img src="{% static 'images/features/f1.png' %}" alt="">
+  <h6>Free Shipping</h6></div>
+
+  <div class = "box" >
+    <img src="{% static 'images/features/f2.png' %}" alt="">
+    <h6>Online Order</h6></div>
     
+  <div class = "box" >
+    <img src="{% static 'images/features/f4.png' %}" alt="">
+    <h6>Promotions</h6></div>
+    
+  <div class = "box" >
+    <img src="{% static 'images/features/f6.png' %}" alt="">
+    <h6>Support</h6></div>
+
+
+</div>
+</section>
+
+<section id="products" class="section-p1">
+<h2>Featured Products</h2>
+<p>New Collection</p>
+
+<div class="container">
+  <div class ="product">
+    <img src="{% static 'images/products/denim jacket.jpg' %}" alt="">
+    <div class="description">
+      <span>PULL&BEAR</span>
+      <h5>Blue Denim jacket</h5>
+      <div class="Star">
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+         </div>
+         <h4>EGP 1,199.00</h4>
+    </div>
+    <a href ="#"> <i class="fal fa-shopping-cart"></i></a>
+  </div>
+ 
+
+
+  <div class ="product">
+    <img src="{% static 'images/products/white t-shirt.jpg' %}" alt="">
+    <div class="description">
+      <span>DEFACTO</span>
+      <h5>Oversize White T-shirt</h5>
+      <div class="Star">
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+         </div>
+         <h4>EGP 199.00</h4>
+    </div>
+    <a href ="#"> <i class="fal fa-shopping-cart"></i></a>
+  </div>
+
+
+ 
+  <div class ="product">
+    <img src="{% static 'images/products/red blouse.png' %}" alt="">
+    <div class="description">
+      <span>LC WAIKIKI</span>
+      <h5>Neck Tie Detailed Blouse</h5>
+      <div class="Star">
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        
+         </div>
+         <h4>EGP 250.00</h4>
+    </div>
+    <a href ="#"> <i class="fal fa-shopping-cart"></i></a>
+  </div>
+
+ 
+ 
+  <div class ="product">
+    <img src="{% static 'images/products/pexels-daniel-lee-3708115.jpg' %}" alt="">
+    <div class="description">
+      <span>PULL&BEAR</span>
+      <h5>Wide-Leg Brown Jeans</h5>
+      <div class="Star">
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+         </div>
+         <h4>EGP 300.00</h4>
+    </div>
+    <a href ="#"> <i class="fal fa-shopping-cart"></i></a>
+  </div>
+
+ 
+ 
+  
+
+ 
+  <div class ="product">
+    <img src="{% static 'images/products/pexels-cottonbro-4937449.jpg' %}" alt="">
+    <div class="description">
+      <span>ZARA</span>
+      <h5>Suit</h5>
+      <div class="Star">
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+         </div>
+         <h4>EGP 1,400.00</h4>
+    </div>
+    <a href ="#"> <i class="fal fa-shopping-cart"></i></a>
+  </div>
+
+
+  <div class ="product">
+    <img src="{% static 'images/products/ss.jpg' %}" alt="">
+    <div class="description">
+      <span>Ravin</span>
+      <h5>Short shirt dress</h5>
+      <div class="Star">
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+         </div>
+         <h4>EGP 500.00</h4>
+    </div>
+    <a href ="#"> <i class="fal fa-shopping-cart"></i></a>
+  </div>
+
+
+  <div class ="product">
+    <img src="{% static 'images/products/chemise.jpg' %}" alt="">
+    <div class="description">
+      <span>Stradivairus</span>
+      <h5>Sateen shirt</h5>
+      <div class="Star">
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+         </div>
+         <h4>EGP 650.00</h4>
+    </div>
+    <a href ="#"> <i class="fal fa-shopping-cart"></i></a>
+  </div>
+
+  <div class ="product">
+    <img src="{% static 'images/products/pexels-emre-keshavarz-5191436.jpg' %}" alt="">
+    <div class="description">
+      <span>American Eagle</span>
+      <h5>AE Super Soft Chemise</h5>
+      <div class="Star">
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+         </div>
+         <h4>EGP 270.00</h4>
+    </div>
+    <a href ="#"> <i class="fal fa-shopping-cart"></i></a>
+  </div>
+</div>
+
+</section>
+
+<section id="banner" class="section-m1">
+  <h2>Up to <span>70% Off</span> - All Products</h2>
+
+</section>
+
+ 
+  <!-- <script src="script.js"></script> -->
 </body>
+
+
 </html>
