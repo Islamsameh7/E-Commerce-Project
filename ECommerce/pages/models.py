@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 
 class Product(models.Model):
     name = models.CharField(max_length=200 ,  null =True)
@@ -16,5 +16,15 @@ class Product(models.Model):
             url = self.image.url
         except:
             url = ''
-        return url   
+        return url  
+    
+class Profile(models.Model):
+    user = models.OneToOneField(User , on_delete = models.CASCADE)
+    auth_token = models.CharField(max_length=100 )
+    suspended = models.BooleanField(default = False)
+    is_verified = models.BooleanField(default = False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return self.user.username     
 # Create your models here.
