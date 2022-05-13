@@ -14,3 +14,14 @@ def shop(request):
     
     return render(request, 'pages/shop.html' , context)
     
+def about(request):
+    return render(request, 'pages/about.html')
+
+def cart(request):
+    return render(request, 'pages/cart.html')
+
+def contact(request):
+    return render(request, 'pages/contact.html')
+
+def product(request):
+    return render(request, 'pages/product.html')

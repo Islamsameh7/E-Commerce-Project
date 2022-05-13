@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Ecomerce Tutorial </title>
+
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+  <link rel ="stylesheet" href="{% static 'style.css' %}">
+
+</head>
+
+<body>
+<section id="page-header" class="contact-header">
+    <style>
+        #page-header{
+            background-image: url("{% static 'images/banner/banner.png' %}");
+        }
+    </style>
+    <h2>#Let's Talk</h2>
+    <p>Leave a message, we love to hear from you.</p>
+</section>
+
+<section id="form-details">
+    <form action="">
+        <span>LEAVE A MESSAGE</span>
+        <h2>We love to hear from you. </h2>
+        <input type="text" placeholder="Your Name">
+        <input type="text" placeholder="E-mail">
+        <input type="text" placeholder="Subject">
+        <textarea name="" id="" cols="30" rows="10" placeholder="Your Message"></textarea>
+        <button>Submit</button>
+
+    </form>
+
+</section>
+
+</body>
+</html>
