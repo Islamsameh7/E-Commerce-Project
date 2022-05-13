@@ -54,7 +54,8 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 10px 60px;
-  background-color:#8a3a93 ;
+  background-color: #E3E6F3;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
   opacity: 0.9;
   z-index: 999;
   position: sticky;
@@ -89,22 +90,22 @@ body {
 #navbar li a:hover {
   /*#navbar li a.active {*/
   color: #8a3a93;
-  transition: 0.3s ease;
+  
 
   /*color:#088178;*/
 }
 
 /*#navbar li a.active::after,*/
-/*#navbar li a:hover::after{
+#navbar li a:hover::after{
   content: '';
-  height: 3px;
+  height: 2px;
   width: 30%;
   background:#8a3a93;
   position: absolute;
   left: 20px;
   bottom: -4px;
-  transition: 0.4s ease-in;
-}*/
+  
+}
 
 #slogan {
 
