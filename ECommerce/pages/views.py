@@ -36,7 +36,11 @@ def contact(request):
 def product(request):
     return render(request, 'pages/product.html')
 
-def login(request):
+
+
+     
+
+def login_attempt(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -67,14 +71,14 @@ def login(request):
         
     return render(request,'pages/login.html')
 
-     
 
-def register(request):
+       
+
+def register_attempt(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         email = request.POST.get('email')
         password = request.POST.get('password')
-        
 
         try:
             if User.objects.filter(username = username).first():
@@ -85,7 +89,7 @@ def register(request):
                 messages.success(request, 'email is taken !')
                 return redirect('/register')
             
-            user_obj =  User(username =username , email = email )
+            user_obj =  User(username =username , email = email)
             user_obj.set_password(password)
             user_obj.save()
             auth_token = str(uuid.uuid4())
@@ -103,7 +107,7 @@ def success(request):
     return render(request, 'pages/success.html')
 
 def token_send(request):
-    return render(request , 'pages/token_send.html')
+    return render(request , 'pages/token.html')
 
 def send_activation_mail(email, token):
     subject ="Your acoount needs to be verified"
@@ -163,4 +167,4 @@ def forgot_password(request):
         except Exception as e:
             print(e)    
     
-    return render(request,'pages/forgot_password.html')  
+    return render(request,'pages/forgot_password.html')   

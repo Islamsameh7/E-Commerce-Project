@@ -76,10 +76,18 @@ WSGI_APPLICATION = 'ECommerce.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'Django',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': '3306',
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+        }
     }
-}
+}        
+ 
 
 
 # Password validation
@@ -110,6 +118,9 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
+
+USE_L10N = True
+
 USE_TZ = True
 
 
@@ -133,6 +144,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True  
 EMAIL_HOST = 'smtp.gmail.com'  
-EMAIL_HOST_USER = 'TheWardrobe2022store@gmail.com'  
-EMAIL_HOST_PASSWORD = 'aA123456'  
+EMAIL_HOST_USER = 'django20222022@gmail.com'  
+EMAIL_HOST_PASSWORD = 'django12345'  
 EMAIL_PORT = 587  
