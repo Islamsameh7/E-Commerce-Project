@@ -25,3 +25,12 @@ def contact(request):
 
 def product(request):
     return render(request, 'pages/product.html')
+
+def register(request):
+    return render(request, 'pages/registeration.html')
+
+def login(request):
+    return render(request, 'pages/login.html')
+
+def forget(request):
+    return render(request, 'pages/forget_password.html')
