@@ -7,6 +7,7 @@
       {% if messages %} {% for message in messages %}
       <div class="alert alert-info">{{ message }}</div>
       {% endfor %} {% endif %}
+
       <form method="POST">
         {% csrf_token %}
         <div class="mb-3">
@@ -26,6 +27,7 @@
             type="password"
             class="form-control w-25"
             id="exampleInputPassword1"
+            name ="password"
             required
           />
           <a
@@ -33,7 +35,14 @@
             style="float: left; font-size: 12px"
             >Forgot password?</a
           >
+        </br>
+        <a
+            href="{% url 'register' %}"
+            style="float: left; font-size: 12px"
+            >Dont have an account?</a
+          >
         </div>
+        
 
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>

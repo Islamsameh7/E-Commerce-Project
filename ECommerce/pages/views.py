@@ -79,7 +79,10 @@ def register_attempt(request):
         username = request.POST.get('username')
         email = request.POST.get('email')
         password = request.POST.get('password')
-
+        first_name = request.POST.get('first-name') 
+        last_name = request.POST.get('last-name')
+        phone_number = request.POST.get('mobile')
+        
         try:
             if User.objects.filter(username = username).first():
                 messages.success(request, 'username is taken !')
@@ -89,8 +92,10 @@ def register_attempt(request):
                 messages.success(request, 'email is taken !')
                 return redirect('/register')
             
-            user_obj =  User(username =username , email = email)
+            user_obj =  User(username =username , email = email , phone_number = phone_number)
             user_obj.set_password(password)
+            user_obj.first_name = first_name
+            user_obj.last_name = last_name
             user_obj.save()
             auth_token = str(uuid.uuid4())
             profile_obj = Profile.objects.create(user = user_obj , auth_token = auth_token)
