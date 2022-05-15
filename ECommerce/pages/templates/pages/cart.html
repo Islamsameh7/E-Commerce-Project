@@ -1,18 +1,7 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> Ecomerce Tutorial </title>
+{% block content %}
 
-  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
-  <link rel ="stylesheet" href="{% static 'css/style.css' %}">
-
-</head>
-
-<body>
     <section id="page-header" class="cart-header">
         <style>
             #page-header{
@@ -37,23 +26,18 @@
 </thead>
 
 <tbody>
-    <tr>
-        <td><a href="#"><i class="far fa-times-circle"></i></a></td>
-        <td><img src="{% static 'images/products/red blouse.png' %}" alt=""></td>
-        <td>Neck Tie Detailed Blouse</td>
-        <td>EGP 250.00</td>
-        <td><input type="number" value="1"></td>
-        <td>EGP 250.00</td>
-    </tr>
+    {% for item in items %}
 
     <tr>
         <td><a href="#"><i class="far fa-times-circle"></i></a></td>
-        <td><img src="{% static 'images/products/chemise.jpg' %}" alt=""></td>
-        <td>Sateen shirt</td>
-        <td>EGP 650.00</td>
-        <td><input type="number" value="1"></td>
-        <td>EGP 650.00</td>
+        <td><img src="{{item.product.imageURL}}" alt=""></td>
+        <td>{{item.product.name}}</td>
+        <td>${{item.product.price|floatformat:2}}</td>
+        <td>{{item.quantity}}</td>
+        <td>${{item.get_total}}</td>
     </tr>
+
+    {% endfor %}
 </tbody>
 
 
@@ -74,10 +58,7 @@
     <div id="subtotal">
         <h3>Cart Total</h3>
         <table>
-            <tr>
-                <td> Cart Subtotal</td>
-                <td>EGP 250.00</td>
-            </tr>
+            
 
             <tr>
                 <td>Shipping</td>
@@ -86,16 +67,14 @@
 
             <tr>
                 <td><strong>Total</strong></td>
-                <td><strong>EGP 250.00</strong></td>
+                <td><strong>${{order.get_cart_total|floatformat:2}}</strong></td>
                 
             </tr>
         </table>
 
-        <button>Checkout</button>
+        <button ><a href="{% url 'checkout'%}" style="text-decoration: none;color:white;">Checkout </a></button>
     </div>
 </section>
 
 
-
-</body>
-</html>
+{%endblock content%}
