@@ -68,14 +68,11 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  
-  
-
 }
 
 #navbar li {
   list-style: none;
-  padding: 0 20px;
+  padding: 15px 20px 0 20px;
   position: relative;
 }
 
@@ -90,21 +87,21 @@ body {
 #navbar li a:hover {
   /*#navbar li a.active {*/
   color: #8a3a93;
-  
+
 
   /*color:#088178;*/
 }
 
 /*#navbar li a.active::after,*/
-#navbar li a:hover::after{
+#navbar li a:hover::after {
   content: '';
   height: 2px;
   width: 30%;
-  background:#8a3a93;
+  background: #8a3a93;
   position: absolute;
   left: 20px;
   bottom: -4px;
-  
+
 }
 
 #slogan {
@@ -648,112 +645,116 @@ footer .copyright {
 }
 
 /*cart page*/
-#cart table{
-  width:100%;
+#cart table {
+  width: 100%;
   border-collapse: collapse;
   table-layout: fixed;
-  white-space:nowrap;
+  white-space: nowrap;
 }
 
-#cart table img{
-  width:50%;
-}
-#cart table td:nth-child(1){
- width:100px;
- text-align: center;
+#cart table img {
+  width: 50%;
 }
 
-#cart table td:nth-child(2){
-  width:150px;
+#cart table td:nth-child(1) {
+  width: 100px;
   text-align: center;
- }
-
- #cart table td:nth-child(3){
-  width:250px;
-  text-align: center;
- }
-
- #cart table td:nth-child(4),
- #cart table td:nth-child(5),
- #cart table td:nth-child(6)
- {
-  width:150px;
-  text-align: center;
- }
-
- #cart table td:nth-child(5) input{
-   width:70px;
-   padding:10px 5px 10px 15px;
- }
-
- #cart table thead{
-   border: 1px solid #e2e9e1;
-   border-left: none;
-   border-right: none;
- }
-
- #cart table thead td{
-   font-weight: 700;
-   text-transform: uppercase;
-   font-size: 13px;
-   padding: 18px 0;
-   color: black;
- }
-
- #cart table tbody tr td{
-   padding-top: 15px;
- }
-
- #cart table tbody  td{
- font-size: 13px;
 }
 
-#cart-add{
-display: flex;
-flex-wrap: wrap;
-justify-content: space-between;
+#cart table td:nth-child(2) {
+  width: 150px;
+  text-align: center;
 }
 
-#prmotion{
-  width:50%;
+#cart table td:nth-child(3) {
+  width: 250px;
+  text-align: center;
+}
+
+#cart table td:nth-child(4),
+#cart table td:nth-child(5),
+#cart table td:nth-child(6) {
+  width: 150px;
+  text-align: center;
+}
+
+#cart table td:nth-child(5) input {
+  width: 70px;
+  padding: 10px 5px 10px 15px;
+}
+
+#cart table thead {
+  border: 1px solid #e2e9e1;
+  border-left: none;
+  border-right: none;
+}
+
+#cart table thead td {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 13px;
+  padding: 18px 0;
+  color: black;
+}
+
+#cart table tbody tr td {
+  padding-top: 15px;
+}
+
+#cart table tbody td {
+  font-size: 13px;
+}
+
+#cart-add {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+#prmotion {
+  width: 50%;
   margin-bottom: 30px;
 }
-#cart-add #promotion{
-  width:40%;
-  margin-bottom:30px;
-  
-}
-.cart-row{
-	display: flex;
-    align-items: flex-stretch;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
-    border-bottom: 1px solid #ececec;
+
+#cart-add #promotion {
+  width: 40%;
+  margin-bottom: 30px;
 
 }
-.box-element{
-	box-shadow:hsl(0, 0%, 80%) 0 0 16px;
-	background-color: #fff;
-	border-radius: 4px;
-	padding: 10px;
+
+.cart-row {
+  display: flex;
+  align-items: flex-stretch;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ececec;
+
 }
-.row-image{
-	width: 100px;
+
+.box-element {
+  box-shadow: hsl(0, 0%, 80%) 0 0 16px;
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+.row-image {
+  width: 100px;
 }
 
 #promotion h3,
-#subtotal h3{
+#subtotal h3 {
   padding-bottom: 15px;
 }
 
-#promotion input{
+#promotion input {
   padding: 10px 20px;
-  outline:none;
-  width:60%;
-  border:1px solid #e2e9e1;
+  outline: none;
+  width: 60%;
+  border: 1px solid #e2e9e1;
 }
 
-#cart-add button{
+#cart-add button {
   font-size: 13px;
   font-weight: 600;
   padding: 8px 20px;
@@ -763,23 +764,23 @@ justify-content: space-between;
   border: 1px solid white;
 }
 
-#subtotal{
-  width:50%;
+#subtotal {
+  width: 50%;
   margin-bottom: 30px;
-  border:1px solid #e2e9e1;
+  border: 1px solid #e2e9e1;
   padding: 30px;
 }
 
-#subtotal table{
+#subtotal table {
   border-collapse: collapse;
-  width:100%;
+  width: 100%;
   margin-bottom: 20px;
 
 }
 
-#subtotal table td{
-  width:40%;
-  border:1px solid #e2e9e1;
-  padding:15px ;
+#subtotal table td {
+  width: 40%;
+  border: 1px solid #e2e9e1;
+  padding: 15px;
   font-size: 13px;
 }
