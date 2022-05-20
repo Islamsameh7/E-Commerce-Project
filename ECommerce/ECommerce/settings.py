@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'ECommerce.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'Django',
+        'NAME': 'django',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',
@@ -133,7 +133,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR , 'static')
 ]
 
-MEDIA_ROOT = '/images/'
+MEDIA_URL = '/images/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR,'static/images')
 # Default primary key field type

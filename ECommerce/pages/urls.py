@@ -16,5 +16,7 @@ urlpatterns = [
     path('verify/<auth_token>' , verify, name = "verify"),
     path('error' , error_page , name ="error"),
     path('forgot_password', forgot_password, name="forgot_password"),
-    path('forgot_password_error', forgot_password_error, name="forgot_password_error")
+    path('forgot_password_error', forgot_password_error, name="forgot_password_error"),
+    path('update_item', updateItem, name="update_item"),
+
 ]

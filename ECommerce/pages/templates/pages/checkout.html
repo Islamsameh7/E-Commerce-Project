@@ -64,4 +64,21 @@
 			</div>
 		</div>
 	</div>
+
+	<script>
+		var shipping = '{{order.shipping}}'
+		if(shipping == 'false'){
+		  document.getElementsByClassName('cart-row').innerHTML = ''
+		}
+	  
+		var form = document.getElementById('form')
+
+		form.addEventListener('submit', function(){
+			e.preventDefault()
+			console.log('form submitted...')
+			document.getElementById('form-button').classList.add('hidden')
+			document.getElementById('payment-info').classList.remove('hidden')
+		})
+	</script>
+	  
 {% endblock content %}
