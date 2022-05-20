@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-     <!-- <div class="row">
+     <div class="row">
 		<div class="col-lg-6">
 			<div class="box-element" id="form-wrapper">
 				<form id="form">
+                    {% csrf_token %}
 					<div id="user-info">
 						<div class="form-field">
 							<input required class="form-control" type="text" name="name" placeholder="Name..">
@@ -41,6 +42,7 @@
 			<br>
 			<div class="box-element hidden" id="payment-info">
 				<small>Paypal Options</small>
+                <button id="make-payment">Make Payment</button>
 			</div>
 			
 		</div>
@@ -67,11 +69,24 @@
 
 	<script>
 		var shipping = '{{order.shipping}}'
+        var total = '{{order.get_cart_total}}'
+
 		if(shipping == 'false'){
 		  document.getElementsByClassName('cart-row').innerHTML = ''
 		}
+
+        if(user != 'AnonymousUser'){
+            document.getElementById('user-info').innerHTML = ''
+        }
+
+        if(shipping == 'False' && user != "AnonymousUser"){
+            document.getElementById('form-wrapper').classList.add('hidden')
+            document.getElementById('payent-info').classList.remove('hidden')
+        }
 	  
 		var form = document.getElementById('form')
+        csrftoken = form.getElementsByTagName("input")[0].value
+        console.log('NewToken: ', form.getElementsByTagName("input")[0].value)
 
 		form.addEventListener('submit', function(){
 			e.preventDefault()
@@ -79,111 +94,63 @@
 			document.getElementById('form-button').classList.add('hidden')
 			document.getElementById('payment-info').classList.remove('hidden')
 		})
+        
+        document.getElementById('make-payment').addEventListener('click', function(){
+            submitFormData()
+        })
+
+        function submitFormData(){
+            console.log("Payment button clicked")
+
+            var userFormData = {
+                'name':null,
+                'email':null,
+                'total':total,
+            }
+
+            var shippingInfo = {
+                'address':null,
+                'city':null,
+                'state':null,
+                'zipcode':null,
+            }
+
+            if(shipping != 'False'){
+            shippingInfo.address = form.address.value
+            shippingInfo.city = form.city.value
+            shippingInfo.state = form.state.value
+            shippingInfo.zipcode = form.zipcode.value
+            }
+
+            if(user == 'AnonymousUser'){
+                userFormData.name = form.name.value
+                userFormData.email = form.email.value
+                
+            }
+
+            var url = 'process_order'
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type':'applicationjson',
+                    'X-CSRFToken':csrftoken,
+                },
+                body: JSON.stringify({'form': userFormData, 'shipping': shippingInfo})
+            })
+
+            .then((response) => response.json())
+
+            .then((data) => {
+                console.log('Success ', data)
+                alert('Transaction completed')
+                window.location.href = "{% url 'shop' %}"
+            })
+            
+        }
+
 	</script>
 	  
-	</div> -->
+	</div>
 
-
-	<!DOCTYPE html>
-<html long="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-compatible" content="IE-edge">
-    <meta name="viewport" content="width-device-width, initial-scale-1.0">
-    
-    <link rel="stylesheet" href="style.css">
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
-     rel="stylesheet">
-
-</head>
-<body>
-    <div class="wrapper">
-        <h2>Payment Form</h2>
-        <form method="POST">
-            <h4>Account</h4>
-            <div class="input-group">
-                <div class="input-box">
-                    <input type="text"
-                    placeholder="Full Name" required
-                    class="name">
-                    <i class="fa fa-user icon"></i>
-                </div>
-               
-            </div>
-            <div class="input-group">
-                <div class="input-box">
-                    <input type="email"
-                    placeholder="Email Adress" required
-                    class="name">
-                    <i class="fa fa-envelope icon"></i>
-                </div>
-            </div>
-            <div class="input-group">
-                <div clas="input-box">
-                    <h4>Date of birth</h4>
-                    <input type="text" placeholder="Day"
-                    class="dob">
-                    <input type="text" placeholder="Month"
-                    class="dob">
-                    <input type="text" placeholder="Year"
-                    class="dob">
-                </div>
-                <div class="input-box">
-                    <h4>Gender</h4>
-                    <input type="radio" id="b1"
-                    name="gendar" checked class="radio">
-                    <label for="b1">Male</label>
-                    <input type="radio" id="b2" name="gendar" class="radio">
-                    <label for="b2">Female</label>
-                </div>
-            </div>
-            <div class="input-group">
-                <div class="input-box">
-                    <h4>Payment Details</h4>
-                    <input type="radio" name="pay"
-                    id="bc1" checked class="radio">
-                    <label for="bc1"><span><i class="fa fa-cc-visa"></i> Credit Card
-                    </span></label>
-                    <input type="radio" name="pay"
-                    id="bc2" class =radio>
-                    <label for="bc2"><span><i class="fa fa-cc-paypal"></i>Paypal
-                    </span></label>
-                </div>
-            </div>
-            <div class="input-group">
-                <div class="input-box">
-                    <input type="tel" placeholder="Card Number" required class="name">
-                    <i class="fa fa-credit-card icon"></i>
-                </div>
-            </div>
-            <div class="input-group">
-                <div class="input-box">
-                    <input type="tel" placeholder="Card CVC" required class="name">
-                    <i class="fa fa-user icon"></i>
-                </div>
-                <div class="input-box">
-                    <select>
-                        <option>01 jun</option>
-                        <option>01 jun</option>
-                        <option>01 jun</option>
-                    </select>
-                    <select>
-                        <option>2020</option>
-                        <option>2021</option>
-                        <option>2022</option>
-                    </select>
-                </div>
-            </div>
-            <div class="input-group">
-                <div class="input-box">
-                    <button type="submit">Pay Now</button>
-                </div>
-            </div>
-        </form>
-    </div>
-
-
-</body>
-</html>
 {% endblock content %}
