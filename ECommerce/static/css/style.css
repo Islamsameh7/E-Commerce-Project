@@ -237,7 +237,7 @@ body {
 
 #products .product .description h5 {
   padding-top: 5px;
-  color: rgb(63, 78, 189);
+  color: black;
   font-size: 14px;
 
 }
@@ -350,12 +350,14 @@ background-image: linear-gradient(rgba(0, 0, 0, 0.155),rgba(0, 0, 0, 0.078)),url
 #sale-banner button.learn {
   font-size: 13px;
   font-weight: 600;
-  padding: 11px 18px;
+  /* padding: 11px 18px; */
+  width: 140px;
+  padding: 15px 0;
   color: white;
   background-color: transparent;
   cursor: pointer;
   border: 1px solid white;
-  
+ 
 
 }
 
@@ -501,7 +503,7 @@ footer .copyright {
   width: 100%;
   text-align: center;
 }
-
+/* 
 #prodetails {
   display: flex;
   margin-top: 20px;
@@ -554,7 +556,7 @@ footer .copyright {
 
 #prodetails .single-pro-details span {
   line-height: 25px;
-}
+} */
 
 /*contact us*/
 
