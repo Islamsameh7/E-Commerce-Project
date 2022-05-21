@@ -122,13 +122,16 @@ body {
 
 #slogan h2 {
   padding-bottom: 15px;
-  /*color: white;*/
+  font-weight: bold;
+  font-size: large;
   color: black;
+  font-weight:500;
 
 }
 
 #slogan h1 {
   color: yellow;
+  font-weight: bold;
 }
 
 #slogan p {
@@ -352,6 +355,7 @@ background-image: linear-gradient(rgba(0, 0, 0, 0.155),rgba(0, 0, 0, 0.078)),url
   background-color: transparent;
   cursor: pointer;
   border: 1px solid white;
+  
 
 }
 
