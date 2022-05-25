@@ -21,7 +21,9 @@ from django.contrib.auth import logout
 def home(request):
     return render(request, 'pages/home.html')
 
-
+def profile(request):
+    return render(request, 'pages/profile.html')
+    
 def about(request):
     return render(request, 'pages/about.html')
 
@@ -97,7 +99,15 @@ def register_attempt(request):
             user_obj.save()
             auth_token = str(uuid.uuid4())
             profile_obj = Profile.objects.create(
-                user=user_obj, auth_token=auth_token)
+                user=user_obj,
+                username = username,
+                first_name = first_name,
+                last_name = last_name,
+                email = email,
+                password = password,
+                phone_number=phone_number,
+                auth_token=auth_token
+                )
             profile_obj.save()
             send_activation_mail(email, auth_token)
             return redirect('/token')
@@ -183,7 +193,7 @@ def forgot_password(request):
 def shop(request):
 
     if request.user.is_authenticated:
-        customer = request.user.customer
+        customer = request.user
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
         items = order.orderitem_set.all()
         cartItems = order.get_cart_items
@@ -201,7 +211,7 @@ def shop(request):
 def cart(request):
 
     if request.user.is_authenticated:
-        customer = request.user.customer
+        customer = request.user
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
         items = order.orderitem_set.all()
         cartItems = order.get_cart_items
@@ -218,7 +228,7 @@ def cart(request):
 def checkout(request):
 
     if request.user.is_authenticated:
-        customer = request.user.customer
+        customer = request.user
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
         items = order.orderitem_set.all()
         cartItems = order.get_cart_items
@@ -238,7 +248,7 @@ def updateItem(request):
     print('Action: ', action)
     print('Product name: ', productName)
 
-    customer = request.user.customer
+    customer = request.user
     product = Product.objects.get(name=productName)
     order, created = Order.objects.get_or_create(customer=customer, complete=False)
     orderItem, created = OrderItem.objects.get_or_create(order=order, product=product)
@@ -261,7 +271,7 @@ def processOrder(request):
     data = json.loads(request.body)
 
     if request.user.is_authenticated:
-        customer = request.user.customer
+        customer = request.user
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
         total = float(data['form']['total'])
         order.transaction_id = transaction_id

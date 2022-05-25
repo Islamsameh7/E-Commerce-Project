@@ -20,5 +20,6 @@ urlpatterns = [
     path('update_item', updateItem, name="update_item"),
     path('process_order', processOrder, name="process_order"),
     path('home', logout_view, name="logout"),
+    path('profile', profile, name="profile"),
 
 ]
