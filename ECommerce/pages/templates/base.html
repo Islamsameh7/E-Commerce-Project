@@ -56,7 +56,13 @@
         ><img src="{% static 'images/logo.png' %}" class="logo" alt=""
       /></a>
       <div>
+        
         <ul id="navbar">
+          <li>
+            {% if request.user.is_authenticated %}
+              <h5>Welcome, {{request.user.username}}</h5>
+            {% endif %}
+          </li>
           <li><a class="active" href="{% url 'home' %}">Home</a></li>
           <li><a href="{% url 'shop' %}">Shop</a></li>
           <li><a href="{% url 'about' %}">About</a></li>
@@ -67,9 +73,18 @@
           <li>
             <a href="{% url 'cart' %}"><i class="far fa-shopping-bag"></i></a>
           </li>
+          {% if request.user.is_authenticated %}
+          <li>
+              <a href="{% url 'home' %}"><i class="far fa-user"></i></a>
+          </li>
+          <li>
+              <a href="{% url 'logout' %}"><i class="far fa-user"></i></a>
+          </li>
+          {% else %}
           <li>
             <a href="{% url 'login' %}"><i class="far fa-user"></i></a>
-          </li>
+        </li>
+          {% endif %}
         </ul>
       </div>
     </section>

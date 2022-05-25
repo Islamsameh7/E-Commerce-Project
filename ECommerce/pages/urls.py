@@ -19,5 +19,6 @@ urlpatterns = [
     path('forgot_password_error', forgot_password_error, name="forgot_password_error"),
     path('update_item', updateItem, name="update_item"),
     path('process_order', processOrder, name="process_order"),
+    path('home', logout_view, name="logout"),
 
 ]

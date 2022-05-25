@@ -15,6 +15,7 @@ from pages.models import Product
 from django.http import JsonResponse
 import json
 import datetime
+from django.contrib.auth import logout
 
 
 def home(request):
@@ -32,6 +33,9 @@ def contact(request):
 def product(request):
     return render(request, 'pages/product.html')
 
+def logout_view(request):
+    logout(request)
+    return render(request, 'pages/home.html')
 
 def login_attempt(request):
     if request.method == 'POST':
