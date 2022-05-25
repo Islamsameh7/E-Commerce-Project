@@ -39,6 +39,10 @@ def login_attempt(request):
         password = request.POST.get('password')
 
         user_obj = User.objects.filter(username=username).first()
+        if request.user.is_superuser:
+            return redirect('/admin/')
+        
+        user_obj = User.objects.filter(username=username).first()
         if user_obj is None:
             messages.success(request, 'User is not found')
             return redirect('/login')
