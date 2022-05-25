@@ -72,16 +72,26 @@ class ShippingAddress(models.Model):
     
     def __str__(self):
         return self.address
-        
-    
+
+
 class Profile(models.Model):
     user = models.OneToOneField(User , on_delete = models.CASCADE, blank=True, null=True)
     username = models.CharField(max_length=20, blank=True, null=True)
     first_name = models.CharField(max_length=20, blank=True, null=True)
     last_name = models.CharField(max_length=20, blank=True, null=True)
-    email = models.EmailField(max_length=20, blank=True, null=True)
+    email = models.EmailField(max_length=100, blank=True, null=True)
     password = models.CharField(max_length=20, blank=True, null=True)
     phone_number = models.IntegerField(blank=True, null=True)
+    image = models.ImageField(null = True , blank = True)
+
+    @property
+    def imageURL(self):
+        try:
+            url = self.image.url
+        except:
+            url = ''
+        return url  
+        
     auth_token = models.CharField(max_length=100 )
     suspended = models.BooleanField(default = False)
     is_verified = models.BooleanField(default = False)

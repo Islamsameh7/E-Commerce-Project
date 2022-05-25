@@ -22,7 +22,11 @@ def home(request):
     return render(request, 'pages/home.html')
 
 def profile(request):
-    return render(request, 'pages/profile.html')
+    
+
+    phonenumber = Profile.objects.get(username = request.user.username).phone_number
+    context = {'mobile': phonenumber}
+    return render(request, 'pages/profile.html', context)
     
 def about(request):
     return render(request, 'pages/about.html')
