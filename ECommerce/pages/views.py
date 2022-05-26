@@ -16,17 +16,47 @@ from django.http import JsonResponse
 import json
 import datetime
 from django.contrib.auth import logout
+from .forms import UpdateUserForm, UpdateProfileForm
+from django.urls import reverse_lazy
+from django.contrib.auth.views import PasswordChangeView
+from django.contrib.messages.views import SuccessMessageMixin
+
+
+class ChangePasswordView(SuccessMessageMixin, PasswordChangeView):
+    template_name = 'pages/change_pass.html'
+    success_message = "Successfully Changed Your Password"
+    success_url = reverse_lazy('home')
 
 
 def home(request):
     return render(request, 'pages/home.html')
 
-def profile(request):
-    
+def updateProfile(request):
+    if request.method == 'POST':
+        user_form = UpdateUserForm(request.POST, instance=request.user.profile)
+        profile_form = UpdateProfileForm(request.POST, request.FILES, instance=request.user.profile)
 
-    phonenumber = Profile.objects.get(username = request.user.username).phone_number
-    context = {'mobile': phonenumber}
-    return render(request, 'pages/profile.html', context)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request, 'Your profile is updated successfully')
+            return redirect('profile')
+    else:
+        user_form = UpdateUserForm(instance=request.user.profile)
+        profile_form = UpdateProfileForm(instance=request.user.profile)
+
+    return render(request, 'pages/update_profile.html', {'user_form': user_form, 'profile_form': profile_form})
+
+def changePass(request):
+    return render(request, 'pages/change_pass.html')
+
+def profile(request):
+    if not request.user.is_superuser:
+        phonenumber = Profile.objects.get(username = request.user.username).phone_number
+        context = {'mobile': phonenumber}
+        return render(request, 'pages/profile.html', context)
+    else:
+        return render(request, 'pages/profile.html')
     
 def about(request):
     return render(request, 'pages/about.html')
@@ -47,6 +77,8 @@ def login_attempt(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
+        if request.user.is_superuser:
+            return redirect('admin/')
 
         user_obj = User.objects.filter(username=username).first()
         if request.user.is_superuser:

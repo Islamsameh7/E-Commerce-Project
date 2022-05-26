@@ -21,5 +21,8 @@ urlpatterns = [
     path('process_order', processOrder, name="process_order"),
     path('home', logout_view, name="logout"),
     path('profile', profile, name="profile"),
+    path('update_profile', updateProfile, name="update_profile"),
+    # path('change_pass', changePass, name="change_pass"),
+    path('change_pass', ChangePasswordView.as_view(), name='change_pass'),
 
 ]
