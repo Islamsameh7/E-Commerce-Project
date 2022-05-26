@@ -1,6 +1,6 @@
 {%extends "base.html"%}
 
-
+{% load static %}
 {% block content %}
 
 <div class="global-container">
@@ -17,10 +17,11 @@
 				{% endfor %}
 	   
 	 		{% endif %}
-			 <form method="POST">
+			
+			 <form method="POST" id ="form">
 				 {% csrf_token %}
 
-				 <div id="error"></div>
+				
 
 				<div class="mb-3">
 					<label for="first-name" class="form-label">First Name</label>
@@ -56,6 +57,7 @@
 					<label for="Confirm password" class="form-label">Confirm Password</label>
 					<input  type="password" placeholder="Re-type password" class="form-control w-25" id="Confirm-password" required>
 				</div>
+				<div id="error"></div>
 				<div class="mb-3">
 					<label for="Birthdate" class="form-label">Birth Date</label>
 					<input type="date" class="form-control w-25" id="Birthdate" name="Birthdate" required> 
@@ -71,7 +73,8 @@
 					<input type="checkbox" class="form-check-input" id="exampleCheck1">
 					<label class="form-check-label" for="exampleCheck1">Remember Me</label>
 				</div>
-				<button type="submit" class="btn btn-primary">Submit</button>
+				<p id="message"></p>
+				<button type="submit"  class="btn btn-primary">Submit</button>
 				<div class="sign-up">
 					Already have an account? <a href="{% url 'login'%}">Sign in</a>
 				</div>
@@ -83,50 +86,6 @@
 </div>
 </div>
 
-<script>
-	const name = document.getElementById('name')
-const password = document.getElementById('password')
-const form = document.getElementById('form')
-const errorElement = document.getElementById('error')
-
-form.addEventListener('submit', (e) => {
-  let messages = []
-  if (name.value === '' || name.value == null) {
-    messages.push('Name is required')
-  }
-
-  if (password.value.length <= 6) {
-    messages.push('Password must be longer than 6 characters')
-  }
-
-  if (password.value.length >= 20) {
-    messages.push('Password must be less than 20 characters')
-  }
-
-  if (password.value === 'password') {
-    messages.push('Password cannot be password')
-  }
-
-  if (messages.length > 0) {
-    e.preventDefault()
-    errorElement.innerText = messages.join(', ')
-  }
-})
-
-	function checkPassword(){
-		let password = document.getElementById("password").value;
-		let ConfirmPassword = document.getElementById("Confirm-password").value;
-		console.log(password,ConfirmPassword);
-
-		let message = document.getElementById("message");
-
-		if(password.length !=0){
-			if(password!=ConfirmPassword){
-				message.textContent ="password doesnot match";
-			}
-		}
-	}
-
-</script>
+<script src="{% static 'js/register.js' %}"></script>
 
 {% endblock %}
