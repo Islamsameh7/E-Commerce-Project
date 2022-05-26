@@ -41,16 +41,20 @@
 
 				<div class="mb-3">
 					<label for="email-adress" class="form-label">Email address</label>
-					<input type="email" placeholder="Email-adress" class="form-control w-25" id="email-adress" name="email" aria-describedby="emailHelp" required>
+					<input type="email" placeholder="abc@gmail.com" class="form-control w-25" id="email-adress" name="email" aria-describedby="emailHelp" required>
 					<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
 				</div>
 				<div class="mb-3">
 					<label for="mobile" class="form-label">Phone Number</label>
-					<input  type="mobile" placeholder="Phone Number" class="form-control w-25" id="mobile" name="mobile" required>
+					<input  type="mobile" placeholder="010-258-123-85" class="form-control w-25" id="mobile" name="mobile" required>
 				</div>
 				<div class="mb-3">
 					<label for="password" class="form-label">Password</label>
 					<input  type="password" placeholder="password" class="form-control w-25" id="password" name="password" required>
+				</div>
+				<div class="mb-3">
+					<label for="Confirm password" class="form-label">Confirm Password</label>
+					<input  type="password" placeholder="Re-type password" class="form-control w-25" id="Confirm-password" required>
 				</div>
 				<div class="mb-3">
 					<label for="Birthdate" class="form-label">Birth Date</label>
@@ -73,19 +77,19 @@
 				</div>
 				</form>
 
-			
+				
 		</div>
 	</div>
 </div>
 </div>
 
 <script>
-const name = document.getElementById('first-name')
+	const name = document.getElementById('name')
 const password = document.getElementById('password')
 const form = document.getElementById('form')
 const errorElement = document.getElementById('error')
 
-form.addEventListener('Submit', (e) => {
+form.addEventListener('submit', (e) => {
   let messages = []
   if (name.value === '' || name.value == null) {
     messages.push('Name is required')
@@ -99,14 +103,30 @@ form.addEventListener('Submit', (e) => {
     messages.push('Password must be less than 20 characters')
   }
 
-//   if (password.value === 'password') {
-//     messages.push('Password cannot be password')
-//   }
+  if (password.value === 'password') {
+    messages.push('Password cannot be password')
+  }
 
   if (messages.length > 0) {
     e.preventDefault()
     errorElement.innerText = messages.join(', ')
   }
 })
+
+	function checkPassword(){
+		let password = document.getElementById("password").value;
+		let ConfirmPassword = document.getElementById("Confirm-password").value;
+		console.log(password,ConfirmPassword);
+
+		let message = document.getElementById("message");
+
+		if(password.length !=0){
+			if(password!=ConfirmPassword){
+				message.textContent ="password doesnot match";
+			}
+		}
+	}
+
 </script>
+
 {% endblock %}
