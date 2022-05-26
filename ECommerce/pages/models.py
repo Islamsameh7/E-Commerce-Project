@@ -1,6 +1,7 @@
+from unicodedata import category
 from django.db import models
 from django.contrib.auth.models import User
-
+from PIL import Image
 
 
 class Product(models.Model):
@@ -8,6 +9,22 @@ class Product(models.Model):
     price = models.FloatField()
     digital = models.BooleanField(default=False, null=True , blank= False)
     image = models.ImageField(null = True , blank = True)
+    product_gender = (
+        ('men', 'MEN'),
+        ('women', 'WOMEN'),
+        ('kids', 'KIDS'),
+        ('unisex', 'UNISEX'),
+    )
+    gender = models.CharField(max_length=6, choices=product_gender, null=True , blank= False)
+    category_choice = (
+        ('t-shirt', 'T-SHIRT'),
+        ('trousers', 'Trousers'),
+        ('shoes', 'Shoes'),
+        ('dress', 'Dress'),
+        ('shirt', 'Shirt'),
+        ('jacket', 'Jacket'),
+    )
+    category = models.CharField(max_length=10, choices=category_choice, null=True , blank= False)
     
     def __str__(self) :
         return self.name
@@ -82,8 +99,13 @@ class Profile(models.Model):
     email = models.EmailField(max_length=100, blank=True, null=True)
     password = models.CharField(max_length=20, blank=True, null=True)
     phone_number = models.IntegerField(blank=True, null=True)
+    birthdate = models.DateField(null=True)
     image = models.ImageField(null = True , blank = True)
-
+    gender_choice = (
+        ('male', 'Male'),
+        ('female', 'Female'),
+    )
+    gender = models.CharField(max_length=6, choices=gender_choice, null=True , blank= False)
     @property
     def imageURL(self):
         try:
@@ -99,4 +121,14 @@ class Profile(models.Model):
     
     def __str__(self):
         return self.username
+
+    # def save(self, *args, **kwargs):
+    #     super().save()
+
+    #     image = Image.open(self.image.path)
+
+    #     if image.height > 100 or image.width > 100:
+    #         new_img = (100, 100)
+    #         image.thumbnail(new_img)
+    #         image.save(self.image.path)
 # Create your models here.
