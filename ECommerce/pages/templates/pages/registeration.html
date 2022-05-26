@@ -20,35 +20,48 @@
 			 <form method="POST">
 				 {% csrf_token %}
 
+				 <div id="error"></div>
+
 				<div class="mb-3">
 					<label for="first-name" class="form-label">First Name</label>
-					<input type="text" class="form-control w-25" id="first-name" name="first-name" aria-describedby="emailHelp" required >
+					<input type="text" placeholder="First Name" class="form-control w-25" id="first-name" name="first-name" aria-describedby="emailHelp" required >
 					
 				</div>
 				<div class="mb-3">
 					<label for="last-name" class="form-label">Last Name</label>
-					<input type="text" class="form-control w-25" id="last-name" name="last-name" aria-describedby="emailHelp" required>
+					<input type="text" placeholder="Last Name" class="form-control w-25" id="last-name" name="last-name" aria-describedby="emailHelp" required>
 					
 				</div>
 	
 				<div class="mb-3">
 					<label for="username" class="form-label">Username</label>
-					<input type="text" class="form-control w-25" id="first-name" name="username" aria-describedby="emailHelp" required >
+					<input type="text" placeholder="Username" class="form-control w-25" id="first-name" name="username" aria-describedby="emailHelp" required >
 					
 				</div>
 
 				<div class="mb-3">
 					<label for="email-adress" class="form-label">Email address</label>
-					<input type="email" class="form-control w-25" id="email-adress" name="email" aria-describedby="emailHelp" required>
+					<input type="email" placeholder="Email-adress" class="form-control w-25" id="email-adress" name="email" aria-describedby="emailHelp" required>
 					<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
 				</div>
 				<div class="mb-3">
 					<label for="mobile" class="form-label">Phone Number</label>
-					<input  type="mobile" class="form-control w-25" id="mobile" name="mobile" required>
+					<input  type="mobile" placeholder="Phone Number" class="form-control w-25" id="mobile" name="mobile" required>
 				</div>
 				<div class="mb-3">
 					<label for="password" class="form-label">Password</label>
-					<input  type="password" class="form-control w-25" id="password" name="password" required>
+					<input  type="password" placeholder="password" class="form-control w-25" id="password" name="password" required>
+				</div>
+				<div class="mb-3">
+					<label for="Birthdate" class="form-label">Birth Date</label>
+					<input type="date" class="form-control w-25" id="Birthdate" name="Birthdate" required> 
+					
+				</div>
+				<div class="mb-3">
+					<label for="Gender" class="form-label">Gender: </label>
+					<input  type="radio" name="gender"  required> Male
+					<input  type="radio" name="gender"  required> Female
+
 				</div>
 				<div class="mb-3 form-check">
 					<input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -66,4 +79,34 @@
 </div>
 </div>
 
+<script>
+	const name = document.getElementById('first-name')
+const password = document.getElementById('password')
+const form = document.getElementById('form')
+const errorElement = document.getElementById('error')
+
+form.addEventListener('Submit', (e) => {
+  let messages = []
+  if (name.value === '' || name.value == null) {
+    messages.push('Name is required')
+  }
+
+  if (password.value.length <= 6) {
+    messages.push('Password must be longer than 6 characters')
+  }
+
+  if (password.value.length >= 20) {
+    messages.push('Password must be less than 20 characters')
+  }
+
+//   if (password.value === 'password') {
+//     messages.push('Password cannot be password')
+//   }
+
+  if (messages.length > 0) {
+    e.preventDefault()
+    errorElement.innerText = messages.join(', ')
+  }
+})
+</script>
 {% endblock %}
