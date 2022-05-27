@@ -77,12 +77,11 @@ def login_attempt(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-        if request.user.is_superuser:
-            return redirect('admin/')
 
-        user_obj = User.objects.filter(username=username).first()
-        if request.user.is_superuser:
-            return redirect('/admin/')
+        user = authenticate(request, username=username, password=password)
+        if user.is_superuser:
+            login(request, user)
+            return redirect('/admin')
         
         user_obj = User.objects.filter(username=username).first()
         if user_obj is None:

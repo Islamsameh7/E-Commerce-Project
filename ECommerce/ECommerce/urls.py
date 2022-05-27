@@ -21,7 +21,7 @@ from django.conf import settings
 from pages import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin', admin.site.urls),
     path('', include('pages.urls')),
 ]
 
