@@ -45,6 +45,7 @@
 					<input type="email" placeholder="abc@gmail.com" class="form-control w-25" id="email-adress" name="email" aria-describedby="emailHelp" required>
 					<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
 				</div>
+
 				<div class="mb-3">
 					<label for="mobile" class="form-label">Phone Number</label>
 					<input  type="mobile" placeholder="010-258-123-85" class="form-control w-25" id="mobile" name="mobile" required>
@@ -52,6 +53,13 @@
 				<div class="mb-3">
 					<label for="password" class="form-label">Password</label>
 					<input  type="password" placeholder="password" class="form-control w-25" id="password" name="password" required>
+					<div id="PassHelp" class="form-text">Your password should be 6 to 20 characters long</div>
+					<style>
+						#PassHelp{
+							color: red;
+							font-weight: 300;
+						}
+					</style>
 				</div>
 				<div class="mb-3">
 					<label for="Confirm password" class="form-label">Confirm Password</label>
@@ -73,8 +81,9 @@
 					<input type="checkbox" class="form-check-input" id="exampleCheck1">
 					<label class="form-check-label" for="exampleCheck1">Remember Me</label>
 				</div>
-				<p id="message"></p>
+			
 				<button type="submit"  class="btn btn-primary">Submit</button>
+				
 				<div class="sign-up">
 					Already have an account? <a href="{% url 'login'%}">Sign in</a>
 				</div>
