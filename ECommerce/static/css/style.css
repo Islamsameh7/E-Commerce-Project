@@ -952,7 +952,7 @@ button:hover{
   background: #088178;
 }
 
-/* .btn-btn-primary{
+.btn-btn-primary button{
   font-size: 13px;
   font-weight: 600;
   
@@ -963,4 +963,5 @@ button:hover{
   cursor: pointer;
   border: 1px solid white;
  
-} */
+}
+
