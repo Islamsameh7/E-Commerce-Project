@@ -8,7 +8,7 @@ updateBtns[i].addEventListener('click', function(){
 
     console.log('User: ', user)
     if(user === 'AnonymousUser'){
-        console.log('not logged in')
+        alert('Please login to access your cart.')
         
     }else{
         updateUserOrder(productName, action)
@@ -17,7 +17,6 @@ updateBtns[i].addEventListener('click', function(){
 }
 
 function updateUserOrder(productName, action){
-    console.log('logged in, sending data...')
 
     var url = 'update_item'
 
@@ -35,7 +34,7 @@ function updateUserOrder(productName, action){
     })
 
     .then((data) => {
-        console.log('data: ', data)
+        alert('Item added succesfully')
         location.reload()
     })
 }

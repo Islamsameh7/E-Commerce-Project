@@ -20,7 +20,7 @@
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="form-row">
-            <div class="col-md-5">
+            <div class="col-md-5" style="margin: auto;">
                 <div class="form-group">
                     <label class="small mb-1">Username:</label>
                     {{ user_form.username }}
@@ -30,15 +30,14 @@
                 <div class="form-group">
                     <a href="{% url 'change_pass' %}">Change Password</a>
                     <hr>
-                    <label class="small mb-1">Change Avatar:</label>
+                    <label class="small mb-1">Change Profile Photo:</label>
                     {{ profile_form.image }}
                 </div>
-                <label class="small mb-1">Bio:</label> {{ profile_form.bio }}
+                
             </div>
         </div>
         <br><br>
-        <button type="submit" class="btn btn-dark btn-lg">Save Changes</button>
-        <button type="reset" class="btn btn-dark btn-lg">Reset</button>
+        <button type="submit" style="margin-left: 350px;">Save Changes</button>
     </form>
 </div>
 {% endblock content %}
