@@ -436,6 +436,7 @@ background-image: linear-gradient(rgba(0, 0, 0, 0.155),rgba(0, 0, 0, 0.078)),url
 }
 
 footer {
+  
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -937,7 +938,7 @@ h4{
   text-align: center;
 }
 button{
-  width: 100%;
+  width: 30%;
   background: transparent;
   border: none;
   background: #088178;

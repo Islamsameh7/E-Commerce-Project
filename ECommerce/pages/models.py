@@ -1,9 +1,15 @@
-from unicodedata import category
 from django.db import models
 from django.contrib.auth.models import User
-from PIL import Image
 
 
+class Category(models.Model):
+    name = models.CharField(max_length=200 ,  null =True)
+    quantity = models.IntegerField(default = 0 , blank=True, null=True)
+    average_price  = models.FloatField(null = True , blank = True)
+    def __str__(self) :
+        return self.name
+    
+    
 class Product(models.Model):
     name = models.CharField(max_length=200 ,  null =True)
     price = models.FloatField()
@@ -16,15 +22,8 @@ class Product(models.Model):
         ('unisex', 'UNISEX'),
     )
     gender = models.CharField(max_length=6, choices=product_gender, null=True , blank= False)
-    category_choice = (
-        ('t-shirt', 'T-SHIRT'),
-        ('trousers', 'Trousers'),
-        ('shoes', 'Shoes'),
-        ('dress', 'Dress'),
-        ('shirt', 'Shirt'),
-        ('jacket', 'Jacket'),
-    )
-    category = models.CharField(max_length=10, choices=category_choice, null=True , blank= False)
+    
+    category =models.ForeignKey(Category, on_delete=models.SET_NULL,blank = True,null=True)
     
     def __str__(self) :
         return self.name
@@ -102,8 +101,8 @@ class Profile(models.Model):
     birthdate = models.DateField(null=True)
     image = models.ImageField(null = True , blank = True)
     gender_choice = (
-        ('male', 'Male'),
-        ('female', 'Female'),
+        ('male', 'male'),
+        ('female', 'female'),
     )
     gender = models.CharField(max_length=6, choices=gender_choice, null=True , blank= False)
     @property

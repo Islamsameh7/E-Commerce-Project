@@ -11,6 +11,7 @@ urlpatterns = [
     path('product', product, name='product'),
     path('login', login_attempt, name="login"),
     path('register', register_attempt, name="register"),
+    path('delete_user', delete_user, name="delete_user"),
     path('token',token_send, name = "token"),
     path('success',success, name = "success"),
     path('verify/<auth_token>' , verify, name = "verify"),
@@ -22,7 +23,10 @@ urlpatterns = [
     path('home', logout_view, name="logout"),
     path('profile', profile, name="profile"),
     path('update_profile', updateProfile, name="update_profile"),
-    # path('change_pass', changePass, name="change_pass"),
+    path('pie_chart', pie_chart, name="pie_chart"),
+    path('bar_chart', bar_chart, name="bar_chart"),
+    path('gender_chart', gender_chart, name="gender_chart"),
     path('change_pass', ChangePasswordView.as_view(), name='change_pass'),
+    
 
 ]

@@ -1,0 +1,37 @@
+{%extends "base.html"%}
+
+
+{% block content %}
+
+<div class="chart-container" style="position: relative; height:40vh; width:40vw; margin:auto">
+  <canvas id="myChart" ></canvas>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const labels = {{ labels|safe }};
+
+  const data = {
+    labels: labels,
+    datasets: [{
+      label: 'Gender',
+      backgroundColor: [
+        '#ff0000', '#0000ff', '#ff0080', '#73ffff', '#5c26ff', '#002db3', '#ffff26'
+      ],
+      borderColor: 'rgb(255, 99, 132)',
+      data: {{ data|safe }},
+    }]
+  };
+
+  const config = {
+    type: 'pie',
+    data: data,
+    options: {}
+  };
+</script>
+<script>
+  const myChart = new Chart(
+    document.getElementById('myChart'),
+    config
+  );
+</script>
+{%endblock%}

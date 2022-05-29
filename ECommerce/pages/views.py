@@ -1,4 +1,4 @@
-from json import JSONDecodeError
+
 from django.http import JsonResponse
 from django.shortcuts import render
 from urllib.request import Request
@@ -117,7 +117,8 @@ def register_attempt(request):
         first_name = request.POST.get('first-name')
         last_name = request.POST.get('last-name')
         phone_number = request.POST.get('mobile')
-
+        gender = request.POST.get('gender')
+        birthdate = request.POST.get('birthdate')
         try:
             if User.objects.filter(username=username).first():
                 messages.success(request, 'username is taken !')
@@ -141,6 +142,8 @@ def register_attempt(request):
                 email = email,
                 password = password,
                 phone_number=phone_number,
+                gender = gender,
+                birthdate = birthdate,
                 auth_token=auth_token
                 )
             profile_obj.save()
@@ -152,6 +155,12 @@ def register_attempt(request):
 
     return render(request, 'pages/registeration.html')
 
+def delete_user(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        user_obj = User.objects.filter(username=username).first()
+        user_obj.delete()
+    return render(request, 'pages/delete_user.html')
 
 def success(request):
     return render(request, 'pages/success.html')
@@ -328,3 +337,91 @@ def processOrder(request):
     else:
         print('User is not logged in..')
     return JsonResponse('Payment complete!', safe=False)
+
+
+def pie_chart(request):
+    labels = []
+    data = []
+    calculateQuantity()
+    queryset = Category.objects.all()
+    for category in queryset:
+        labels.append(category.name)
+        data.append(category.quantity)
+     
+    context = {
+        'labels': labels,
+        'data': data,
+    }
+    return render(request, 'pages/pie_chart.html', context)
+    
+def calculateQuantity():
+      categories = Category.objects.all()
+      products = Product.objects.all()
+
+      for category in categories:
+          counter = 0
+          for product in products:
+              if product.category.name == category.name:
+                  counter += 1 
+                  category.quantity = counter
+                  category.save()
+                  
+
+def bar_chart(request):
+    labels = []
+    data = []
+    calculateAverage()
+    queryset = Category.objects.all()
+    for category in queryset:
+        labels.append(category.name)
+        data.append(category.average_price)
+     
+    context = {
+        'labels': labels,
+        'data': data,
+    }
+    return render(request, 'pages/bar_chart.html', context)
+                  
+def calculateAverage():
+    categories = Category.objects.all()
+    products = Product.objects.all()
+
+    for category in categories:
+          totalPrice = 0
+          numOfProducts = 0
+          for product in products:
+              if product.category.name == category.name:
+                  totalPrice += product.price
+                  numOfProducts+= 1
+          
+          category.average_price = totalPrice / numOfProducts
+          category.save()
+          
+def gender_chart(request):
+    profiles = Profile.objects.all()
+    male = 0
+    female = 0
+    for profile in profiles:
+            if profile.gender == 'male':
+                  male += 1 
+            
+            elif profile.gender =='female':
+                female += 1
+                        
+    labels = ['Male' , 'Female']
+    data = [male , female]
+    
+    context = {
+        'labels': labels,
+        'data': data,
+    }
+    return render(request, 'pages/gender.html', context)          
+          
+
+
+      
+                         
+                      
+                  
+          
+                  
