@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section id="page-header" class="contact-header">
+    <h2>Let's Talk</h2>
+    <p>Leave a message, we love to hear from you.</p>
+</section>
+
+<section  id="form-details">
+    
+    <form method="POST">
+        {% csrf_token %}
+        <span>LEAVE A MESSAGE</span>
+        <h2>We love to hear from you. </h2>
+        <input type="text" name="name" placeholder="Your Name">
+        <input type="email" placeholder="Email" class="form-control w-25" id="email-adress" name="email" aria-describedby="emailHelp" required>
+        <input type="text" name="subject" placeholder="Subject">
+        <textarea name="message" id="" cols="30" rows="10" placeholder="Your Message"></textarea>
+        <button type="submit" name="contact"  class="btn btn-primary">Submit</button>
+
+    </form>
+
+</section>
+{%endblock%}

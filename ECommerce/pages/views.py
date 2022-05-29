@@ -62,8 +62,18 @@ def about(request):
     return render(request, 'pages/about.html')
 
 
-def contact(request):
-    return render(request, 'pages/contact.html')
+def contact_us(request):
+    if request.method == 'POST':
+      if 'contact' in request.POST: 
+        name =   request.POST.get('name')
+        email = request.POST.get('email')
+        message = request.POST.get('message')
+        subject = "from: "+ email
+        recipient_list = [ settings.EMAIL_HOST_USER]
+        send_mail(subject, message, '', recipient_list)
+        return redirect('/contact_us')
+    
+    return render(request, 'pages/contact_us.html')
 
 
 def product(request):
