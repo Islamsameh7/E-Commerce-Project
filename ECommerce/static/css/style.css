@@ -572,7 +572,9 @@ footer .copyright {
   flex-direction: column;
   padding: 14px;
 }
-
+#page-header .contact-header {
+  background-image: url(images/banner/banner.png);
+}
 #page-header h2,
 #page-header p {
 
