@@ -31,6 +31,9 @@ class ChangePasswordView(SuccessMessageMixin, PasswordChangeView):
 def home(request):
     return render(request, 'pages/home.html')
 
+def charts(request):
+    return render(request, 'pages/charts.html')
+
 def updateProfile(request):
     if request.method == 'POST':
         user_form = UpdateUserForm(request.POST, instance=request.user.profile)
@@ -89,14 +92,19 @@ def login_attempt(request):
         password = request.POST.get('password')
 
         user = authenticate(request, username=username, password=password)
-        if user.is_superuser:
-            login(request, user)
-            return redirect('/admin')
+        if user is None:
+            messages.success(request, 'Wrong credintials')
+            return redirect('/login')
         
         user_obj = User.objects.filter(username=username).first()
         if user_obj is None:
             messages.success(request, 'User is not found')
             return redirect('/login')
+
+        user = authenticate(request, username=username, password=password)
+        if user.is_superuser:
+            login(request, user)
+            return redirect('/admin')
 
         profile_obj = Profile.objects.filter(user=user_obj).first()
         if not profile_obj.is_verified:
@@ -108,10 +116,7 @@ def login_attempt(request):
             messages.success(request, 'this account has been suspended')
             return redirect('/login')
 
-        user = authenticate(request, username=username, password=password)
-        if user is None:
-            messages.success(request, 'Wrong credintials')
-            return redirect('/login')
+        
 
         login(request, user)
         return redirect('/')
@@ -365,17 +370,16 @@ def pie_chart(request):
     return render(request, 'pages/pie_chart.html', context)
     
 def calculateQuantity():
-      categories = Category.objects.all()
-      products = Product.objects.all()
+    categories = Category.objects.all()
+    products = Product.objects.all()
 
-      for category in categories:
-          counter = 0
-          for product in products:
-              if product.category.name == category.name:
-                  counter += 1 
-                  category.quantity = counter
-                  category.save()
-                  
+    for category in categories:
+        counter = 0
+        for product in products:
+            if product.category.name == category.name:
+                counter += 1 
+                category.quantity = counter
+                category.save()
 
 def bar_chart(request):
     labels = []
@@ -385,35 +389,35 @@ def bar_chart(request):
     for category in queryset:
         labels.append(category.name)
         data.append(category.average_price)
-     
+
     context = {
         'labels': labels,
         'data': data,
     }
     return render(request, 'pages/bar_chart.html', context)
-                  
+
 def calculateAverage():
     categories = Category.objects.all()
     products = Product.objects.all()
 
     for category in categories:
-          totalPrice = 0
-          numOfProducts = 0
-          for product in products:
-              if product.category.name == category.name:
-                  totalPrice += product.price
-                  numOfProducts+= 1
-          
-          category.average_price = totalPrice / numOfProducts
-          category.save()
-          
+        totalPrice = 0
+        numOfProducts = 0
+        for product in products:
+            if product.category.name == category.name:
+                totalPrice += product.price
+                numOfProducts+= 1
+        
+        category.average_price = totalPrice / numOfProducts
+        category.save()
+
 def gender_chart(request):
     profiles = Profile.objects.all()
     male = 0
     female = 0
     for profile in profiles:
             if profile.gender == 'male':
-                  male += 1 
+                male += 1 
             
             elif profile.gender =='female':
                 female += 1
@@ -426,12 +430,3 @@ def gender_chart(request):
         'data': data,
     }
     return render(request, 'pages/gender.html', context)          
-          
-
-
-      
-                         
-                      
-                  
-          
-                  

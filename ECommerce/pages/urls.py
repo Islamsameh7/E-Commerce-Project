@@ -23,6 +23,7 @@ urlpatterns = [
     path('home', logout_view, name="logout"),
     path('profile', profile, name="profile"),
     path('update_profile', updateProfile, name="update_profile"),
+    path('charts', charts, name="charts"),
     path('pie_chart', pie_chart, name="pie_chart"),
     path('bar_chart', bar_chart, name="bar_chart"),
     path('gender_chart', gender_chart, name="gender_chart"),

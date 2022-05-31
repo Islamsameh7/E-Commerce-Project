@@ -2,17 +2,17 @@
 {% load static %}
 
 {% block content %}
-<section id="page-header" class="contact-header">
+
+<section id="page-header"  style= "background-image: url(images/banner/banner.png);" class="contact-header">
     <h2>Let's Talk</h2>
     <p>Leave a message, we love to hear from you.</p>
 </section>
 
 <section  id="form-details">
     
-    <form method="POST">
+    <form method="POST" style="margin-left : 300px;"> 
         {% csrf_token %}
-        <span>LEAVE A MESSAGE</span>
-        <h2>We love to hear from you. </h2>
+        <br>
         <input type="text" name="name" placeholder="Your Name">
         <input type="email" placeholder="Email" class="form-control w-25" id="email-adress" name="email" aria-describedby="emailHelp" required>
         <input type="text" name="subject" placeholder="Subject">

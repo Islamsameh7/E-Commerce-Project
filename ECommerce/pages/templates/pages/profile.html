@@ -27,12 +27,20 @@
                                 <li class="nav-item">
                                     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
                                 </li>
-                                
                             </ul>
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <a href="{% url 'update_profile' %}">edit</a>
+                        <a href="{% url 'update_profile' %}" 
+                        style="
+                            background-color: #088178;
+                            border-radius: 5px;
+                            color: white;
+                            padding: 14px 25px;
+                            text-align: center;
+                            text-decoration: none;
+                            display: inline-block;">edit</a>
+                        
                         <!-- <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/> -->
                     </div>
                 </div>

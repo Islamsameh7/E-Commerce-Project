@@ -13,7 +13,7 @@
   <table width="100%">
     <thead>
       <tr>
-        <td>Remove</td>
+        <!-- <td>Remove</td> -->
         <td>Image</td>
         <td>Product</td>
         <td>Price</td>
@@ -26,9 +26,9 @@
       {% for item in items %}
 
       <tr>
-        <td>
+        <!-- <td>
           <a href=""><i data-product="{{product.name}}" data-action="remove" class="far fa-times-circle update-cart"></i></a>
-        </td>
+        </td> -->
         <td><img src="{{item.product.imageURL}}" alt="" /></td>
         <td>{{item.product.name}}</td>
         <td>${{item.product.price|floatformat:2}}</td>
